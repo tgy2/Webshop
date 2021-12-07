@@ -19,14 +19,7 @@ const Content = (props) => {
 		<section className="route-page">
 			<Switch location={location}>
 				{ROUTES.map((route, i) => {
-					return (
-						<RouteWithSubRoutes
-							key={i}
-							{...route}
-							cartIsOpen={props.cartIsOpen}
-							setCartIsOpen={props.setCartIsOpen}
-						/>
-					);
+					return <RouteWithSubRoutes key={i} {...route} />;
 				})}
 			</Switch>
 		</section>
