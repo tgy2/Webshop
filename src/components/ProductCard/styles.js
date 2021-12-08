@@ -42,7 +42,22 @@ const useStyles = makeStyles((theme) =>
 		details: {},
 		title: {},
 		detailMargin: {},
-		buttons: {}
+		buttons: {
+			display: 'flex',
+			flexDirection: 'column',
+			marginLeft: 'auto'
+		},
+		button_add: {
+			color: 'green'
+		},
+		button_remove: {
+			color: 'red'
+		},
+		divider: {
+			transform: 'translateY(-1px)',
+			width: '90%',
+			margin: 'auto'
+		}
 	})
 );
 
