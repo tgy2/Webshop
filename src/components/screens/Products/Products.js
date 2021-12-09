@@ -31,17 +31,16 @@ const Products = ({ products, loading, error, onIncrement, onDecrement }) => {
 		<div id="Product__screen">
 			<Container maxWidth="md">
 				<div className="Products__view">
-					{/* Header */}
-					<Typography variant="h1">Välj varor</Typography>
-					{/* END Header */}
-
-					{/* Items */}
-					<Grid container spacing={2}>
+					<div className={classes.productHeader}>
+						<Typography variant="h1" className={classes.productsTitle}>
+							Välj varor
+						</Typography>
+					</div>
+					<Grid container spacing={2} justify="center">
 						<Grid item xs={12}>
 							{renderProductCards()}
 						</Grid>
 					</Grid>
-					{/* END Items */}
 				</div>
 			</Container>
 		</div>

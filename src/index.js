@@ -14,7 +14,9 @@ ReactDOM.render(
 	<Provider store={store}>
 		<React.StrictMode>
 			<ThemeProvider theme={mainTheme}>
-				<App />
+				<Suspense fallback={<IsLoading />}>
+					<App />
+				</Suspense>
 			</ThemeProvider>
 		</React.StrictMode>
 	</Provider>,

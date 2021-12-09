@@ -11,6 +11,7 @@ const reducer = (state = initialState, action) => {
 	switch (action.type) {
 		case actionTypes.RESET_CART:
 			return {
+				...state,
 				totalPrice: 0,
 				deliveryFee: 0,
 				productPrice: 0,
@@ -28,8 +29,13 @@ const reducer = (state = initialState, action) => {
 				...state,
 				orders: secondArray
 			};
-		// case actionTypes.CALCULATE_TOTAL_CART_AMOUNT:
-		// 	return {};
+		case actionTypes.CALCULATE_TOTAL_CART_AMOUNT:
+			return {
+				...state,
+				totalPrice: action.payload.totalPrice,
+				deliveryFee: action.payload.deliveryFee,
+				productPrice: action.payload.productPrice
+			};
 		default:
 			return state;
 	}
@@ -65,7 +71,7 @@ const decrementProducts = (orders, action) => {
 	const newArray = orders.slice();
 	const productIndex = findProductIndex(newArray, action.payload.id);
 
-	if (productIndex !== -1 && orders[productIndex].quantity > 1) {
+	if (productIndex !== -1 && newArray[productIndex].quantity > 1) {
 		newArray[productIndex] = {
 			product: newArray[productIndex].product,
 			quantity: newArray[productIndex].quantity - 1
