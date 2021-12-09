@@ -4,14 +4,21 @@ import useStyles from './styles';
 import { connect } from 'react-redux';
 import ProductCard from '../../ProductCard/ProductCard';
 import { incrementProduct, decrementProduct } from '../../../reduxStore/actions/cartActions';
+import { useParams } from 'react-router-dom'
+import Sidebar from '../../Sidebar/Sidebar'
 
 const Products = ({ products, loading, error, onIncrement, onDecrement }) => {
 	const classes = useStyles();
 
+	const {category} = useParams()
+	console.log(category)
+	
+
 	const renderProductCards = () => {
 		if (loading) return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((d) => <ProductCard loading={loading} key={d} />);
-
-		const array = products.map((item, i) => {
+		console.log(products)
+		let array = products.map((item, i) => {
+	
 			return (
 				<ProductCard
 					{...item}
@@ -22,13 +29,29 @@ const Products = ({ products, loading, error, onIncrement, onDecrement }) => {
 					isLast={i === products.length - 1}
 				/>
 			);
-		});
+		
+		})
+		
+		if (category) {
+			array = array.filter((item) =>  { 
+				
+				const s = item.props.category.replace(/[^A-Z0-9]/ig, "") 
+				console.log(s)
+				return s == category
+			} ) 
+		}
 
-		return array;
+console.log(array)
+		if ( array.length <= 1) {
+			return <h1>Category not found</h1>
+		} else {
+			return array;
+		}
 	};
 
 	return (
 		<div id="Product__screen">
+			<Sidebar />
 			<Container maxWidth="md">
 				<div className="Products__view">
 					<div className={classes.productHeader}>

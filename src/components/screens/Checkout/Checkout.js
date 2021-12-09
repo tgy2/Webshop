@@ -12,7 +12,7 @@ const Checkout = ({ cart, resetCart }) => {
 				<Typography variant="h1">Checkout</Typography>
 				{cart.orders.map((item) => (
 					<p>
-						{item.product.title} ----- {item.quantity}
+						{item.product.title} Amount:  {item.quantity} 
 					</p>
 				))}
 
