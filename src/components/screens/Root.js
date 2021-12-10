@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom';
 import { ROUTES } from '../../routes/routes';
 import Navbar from '../Navbar/Navbar';
+import Sidebar from '../Sidebar/Sidebar';
 
 const RouteWithSubRoutes = (route) => {
 	return (
