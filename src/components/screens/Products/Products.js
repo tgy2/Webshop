@@ -7,7 +7,7 @@ import { incrementProduct, decrementProduct } from '../../../reduxStore/actions/
 import { useParams } from 'react-router-dom';
 import Sidebar from '../../Sidebar/Sidebar';
 
-const Products = ({ products, loading, error, onIncrement, onDecrement }) => {
+const Products = ({ products, loading, error, orders }) => {
 	const classes = useStyles();
 
 	const { category } = useParams();
@@ -15,16 +15,17 @@ const Products = ({ products, loading, error, onIncrement, onDecrement }) => {
 
 	const renderProductCards = () => {
 		if (loading) return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((d) => <ProductCard loading={loading} key={d} />);
-		console.log(products);
 		let array = products.map((item, i) => {
+			const order = orders.find((el) => el.product.id === item.id);
+			const quantity = order ? order.quantity : null;
+
 			return (
 				<ProductCard
 					{...item}
 					loading={loading}
 					key={i}
-					onIncrement={() => onIncrement(item)}
-					onDecrement={() => onDecrement(item)}
 					isLast={i === products.length - 1}
+					quantity={quantity}
 				/>
 			);
 		});
@@ -72,14 +73,7 @@ const Products = ({ products, loading, error, onIncrement, onDecrement }) => {
 
 const mapState = (state) => {
 	const { items, loading, error } = state.products;
-	return { products: items, loading, error };
+	return { products: items, loading, error, orders: state.cart.orders };
 };
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		onIncrement: (data) => dispatch(incrementProduct(data)),
-		onDecrement: (data) => dispatch(decrementProduct(data))
-	};
-};
-
-export default connect(mapState, mapDispatchToProps)(Products);
+export default connect(mapState)(Products);

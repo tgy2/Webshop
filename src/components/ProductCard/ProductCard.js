@@ -2,21 +2,25 @@ import { Typography, IconButton, Divider, Skeleton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import useStyles from './styles';
+import ControllButtons from '../ControllButtons/ControllButtons';
 
-const ProductCard = ({
-	loading,
-	title,
-	price,
-	image,
-	id,
-	description,
-	category,
-	rating,
-	isLast,
-	onIncrement,
-	onDecrement
-}) => {
+const ProductCard = ({ loading, title, price, image, id, description, category, rating, isLast, quantity }) => {
 	const classes = useStyles();
+
+	const renderControllButtons = () => {
+		const product = {
+			category,
+			title,
+			price,
+			id,
+			image,
+			description,
+			rating
+		};
+
+		return <ControllButtons product={product} quantity={quantity} />;
+	};
+
 	return (
 		<div className={classes.productCard}>
 			<div className={classes.productCardFlex}>
@@ -45,20 +49,13 @@ const ProductCard = ({
 							{loading ? (
 								<Skeleton variant="text" width={50} height={20}></Skeleton>
 							) : (
-								<p className={classes.detailMargin}>{price} kr</p>
+								<p className={classes.detailMargin}>{price} $</p>
 							)}
 						</div>
 					</div>
 				</div>
 
-				<div className={classes.buttons}>
-					<IconButton aria-label="plus" onClick={onIncrement}>
-						<AddIcon fontSize="large" className={`${classes.button} ${classes.button_add}`} />
-					</IconButton>
-					<IconButton aria-label="plus" onClick={onDecrement}>
-						<RemoveIcon fontSize="large" className={`${classes.button} ${classes.button_remove}`} />
-					</IconButton>
-				</div>
+				{renderControllButtons()}
 			</div>
 			{!isLast && (
 				<div className={classes.divider}>

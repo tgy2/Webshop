@@ -14,6 +14,13 @@ const Checkout = ({ cart, resetCart }) => {
 		};
 	});
 
+	const renderCleanedCartItems = cart.orders.map((orderItem) => {
+		return {
+			image: orderItem.product.image,
+			pricer: orderItem.product.category
+		};
+	});
+
 	const stringifiedCartItems = JSON.stringify(cleanedCartItems);
 
 	return (
@@ -25,9 +32,16 @@ const Checkout = ({ cart, resetCart }) => {
 				<Grid item xs={4}>
 					<Typography variant="h1">Checkout</Typography>
 					{cart.orders.map((item) => (
-						<p>
-							{item.product.title} Amount: {item.quantity}
-						</p>
+						<div>
+							<div className={classes.textContainer}>
+								<img className={classes.img} src={item.product.image} />
+								<div className={classes.productNameContainer}> {item.product.title} </div>
+								<div className={classes.amountContainer}>
+									<p>Amount: {item.quantity}</p>
+									Price: {item.product.price * item.quantity} $
+								</div>
+							</div>
+						</div>
 					))}
 
 					<Button onClick={resetCart} variant="contained">
@@ -40,19 +54,19 @@ const Checkout = ({ cart, resetCart }) => {
 							Subtotal:
 						</Grid>
 						<Grid item xs={2}>
-							{cart.productPrice} kr
+							{cart.productPrice} $
 						</Grid>
 						<Grid item xs={10}>
-							Shipping:
+							Shipping (free over 50$):
 						</Grid>
 						<Grid item xs={2}>
-							{cart.deliveryFee} kr
+							{cart.deliveryFee} $
 						</Grid>
 						<Grid item xs={10}>
 							Total:
 						</Grid>
 						<Grid item xs={2}>
-							{cart.totalPrice} kr
+							{cart.totalPrice} $
 						</Grid>
 					</Grid>
 				</Grid>
