@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import useStyles from './styles';
 import { resetCart } from '../../../reduxStore/actions';
+import './Checkout.css';
 
 const Checkout = ({ cart, resetCart }) => {
 	const classes = useStyles();
@@ -25,11 +26,11 @@ const Checkout = ({ cart, resetCart }) => {
 
 	return (
 		<div id="Checkout">
-			<Grid container xs={12}>
+			<Grid container>
 				<Grid item xs={1}>
 					{/* Intentionally left empty */}
 				</Grid>
-				<Grid item xs={4}>
+				<Grid item lg={4} xs={12} md={5}>
 					<Typography variant="h1">Checkout</Typography>
 					{cart.orders.map((item) => (
 						<div>
@@ -38,13 +39,17 @@ const Checkout = ({ cart, resetCart }) => {
 								<div className={classes.productNameContainer}> {item.product.title} </div>
 								<div className={classes.amountContainer}>
 									<p>Amount: {item.quantity}</p>
-									Price: {item.product.price * item.quantity} $
+									Price: {item.product.price * item.quantity} kr
 								</div>
 							</div>
 						</div>
 					))}
 
-					<Button onClick={resetCart} variant="contained">
+					<Button
+						style={{ backgroundColor: '#FF9900', color: 'black' }}
+						onClick={resetCart}
+						variant="contained"
+					>
 						Reset cart
 					</Button>
 
@@ -54,29 +59,34 @@ const Checkout = ({ cart, resetCart }) => {
 							Subtotal:
 						</Grid>
 						<Grid item xs={2}>
-							{cart.productPrice} $
+							{cart.productPrice} kr
 						</Grid>
 						<Grid item xs={10}>
-							Shipping (free over 50$):
+							Shipping (free over 500kr):
 						</Grid>
 						<Grid item xs={2}>
-							{cart.deliveryFee} $
+							{cart.deliveryFee} kr
 						</Grid>
 						<Grid item xs={10}>
 							Total:
 						</Grid>
 						<Grid item xs={2}>
-							{cart.totalPrice} $
+							{cart.totalPrice} kr
 						</Grid>
 					</Grid>
 				</Grid>
-				<Grid item xs={6}>
-					<iframe
-						src={'http://localhost:3001/checkout/BBB-123?cartItems=' + stringifiedCartItems}
-						frameBorder={'none'}
-						height="900px"
-						width="100%"
-					/>
+				<Grid item lg={6} xs={12} md={5} sm={12}>
+					<Container maxWidth="sm" className="holdsIframe">
+						<iframe
+							src={
+								'https://webshopcheckout-adamnt.herokuapp.com/checkout/BBB-123?cartItems=' +
+								stringifiedCartItems
+							}
+							frameBorder={'none'}
+							height="900px"
+							width="100%"
+						/>
+					</Container>
 				</Grid>
 				<Grid xs={1}>{/* Intentionally left empty */}</Grid>
 			</Grid>

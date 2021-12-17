@@ -20,22 +20,22 @@ const Navbar = ({ cartProducts }) => {
 	return (
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position="static">
-				<Toolbar>
+				<Toolbar style={{ backgroundColor: '#FF9900', color: 'black' }}>
 					<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
 						<Button onClick={() => history.push('/')} color="inherit">
 							Insert logo
 						</Button>
 					</Typography>
 
+					<Button onClick={() => history.push('/')} color="inherit">
+						Products
+					</Button>
+
 					<Badge badgeContent={getNumberOfCartItems()} color="secondary">
 						<Button onClick={() => history.push('/checkout')} color="inherit">
 							Checkout
 						</Button>
 					</Badge>
-
-					<Button onClick={() => history.push('/')} color="inherit">
-						Products
-					</Button>
 				</Toolbar>
 			</AppBar>
 		</Box>

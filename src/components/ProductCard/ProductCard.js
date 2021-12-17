@@ -49,13 +49,17 @@ const ProductCard = ({ loading, title, price, image, id, description, category, 
 							{loading ? (
 								<Skeleton variant="text" width={50} height={20}></Skeleton>
 							) : (
-								<p className={classes.detailMargin}>{price} $</p>
+								<p className={classes.detailMargin}>{price} kr</p>
 							)}
 						</div>
 					</div>
 				</div>
 
-				{renderControllButtons()}
+				{loading ? (
+					<Skeleton style={{ marginLeft: 'auto' }} variant="text" width={50} height={140}></Skeleton>
+				) : (
+					<div style={{ marginLeft: 'auto' }}>{renderControllButtons()} </div>
+				)}
 			</div>
 			{!isLast && (
 				<div className={classes.divider}>

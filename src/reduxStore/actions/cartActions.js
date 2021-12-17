@@ -6,7 +6,7 @@ export const resetCart = (payload) => {
 
 export const calculateTotalCartAmount = () => {
 	return (dispatch, getState) => {
-		const DELIVERY_COST = 3.9;
+		const DELIVERY_COST = 39;
 		const state = getState();
 		const { orders } = state.cart;
 
@@ -18,7 +18,7 @@ export const calculateTotalCartAmount = () => {
 
 		const productPrice = orders.reduce(reducer, 0);
 
-		const deliveryFee = productPrice > 50 ? 0 : DELIVERY_COST;
+		const deliveryFee = productPrice > 500 ? 0 : DELIVERY_COST;
 
 		dispatch({
 			type: actionTypes.CALCULATE_TOTAL_CART_AMOUNT,

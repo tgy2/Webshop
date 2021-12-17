@@ -24,6 +24,38 @@ const Sidebar = (props) => {
 			<Button style={{ width: '100%' }} onClick={() => history.push('/products/womensclothing')} color="inherit">
 				Woman's clothing
 			</Button>
+			<Button style={{ width: '100%' }} onClick={() => history.push('/')} color="inherit">
+				Insert Category
+			</Button>
+			<Button style={{ width: '100%' }} onClick={() => history.push('/')} color="inherit">
+				Insert Category
+			</Button>
+			<Button style={{ width: '100%' }} onClick={() => history.push('/')} color="inherit">
+				Insert Category
+			</Button>
+			<Button style={{ width: '100%' }} onClick={() => history.push('/')} color="inherit">
+				Insert Category
+			</Button>
+			<Button style={{ width: '100%' }} onClick={() => history.push('/')} color="inherit">
+				Insert Category
+			</Button>
+			<Button style={{ width: '100%' }} onClick={() => history.push('/')} color="inherit">
+				Insert Category
+			</Button>
+			<Button style={{ width: '100%' }} onClick={() => history.push('/')} color="inherit">
+				Insert Category
+			</Button>
+			<div
+				style={{
+					fontSize: '12px',
+					color: 'black',
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'center'
+				}}
+			>
+				Disclaimer: Site is not fully mobile responsive yet.
+			</div>
 		</Box>
 	);
 };

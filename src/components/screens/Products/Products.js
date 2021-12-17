@@ -11,7 +11,6 @@ const Products = ({ products, loading, error, orders }) => {
 	const classes = useStyles();
 
 	const { category } = useParams();
-	console.log(category);
 
 	const renderProductCards = () => {
 		if (loading) return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((d) => <ProductCard loading={loading} key={d} />);
@@ -33,12 +32,11 @@ const Products = ({ products, loading, error, orders }) => {
 		if (category) {
 			array = array.filter((item) => {
 				const s = item.props.category.replace(/[^A-Z0-9]/gi, '');
-				console.log(s);
+
 				return s == category;
 			});
 		}
 
-		console.log(array);
 		if (array.length <= 1) {
 			return <h1>Category not found</h1>;
 		} else {
